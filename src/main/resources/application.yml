@@ -1,0 +1,24 @@
+server:
+  servlet:
+    context-path: /
+  port: 8888
+ccprestsms:
+  serverIp: sandboxapp.cloopen.com
+  serverPort: 8883
+  accountSsid: 8a216da8679d0e9d0167ab54650d09b8
+  accountToken: 5d7e367fc13f4da49475b07ee9e87533
+  appId: 8aaf070867bf6f250167bfe04a6c0021
+  templateId: 1
+  aliveTime: 2
+spring:
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password: keertem1911
+    jedis:
+      pool:
+        max-active: 8
+        min-idle: 8
+  resources:
+    static-locations: classpath:/static/

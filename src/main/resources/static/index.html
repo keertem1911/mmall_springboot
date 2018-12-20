@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <link type="text/css" href="webjars/bootstrap/4.1.3/css/bootstrap.css"/>
+    <title>Notification</title>
+<style type="text/css" >
+    @font-face {
+        font-family: 'iconfont';  /* project id 317727 */
+        src: url('//at.alicdn.com/t/font_317727_ldnakbto4gi.eot');
+        src: url('//at.alicdn.com/t/font_317727_ldnakbto4gi.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_317727_ldnakbto4gi.woff') format('woff'),
+        url('//at.alicdn.com/t/font_317727_ldnakbto4gi.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_317727_ldnakbto4gi.svg#iconfont') format('svg');
+    }
+</style>
+</head>
+<script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script type="text/javascript">
+
+        if(window.Notification){
+            function showNotifictioin() {
+                if(Notification.permission=='granted'){
+                    var preNode= new Notification('今天天气情况',{
+                        body:'小雨12°C-16°C',
+                        icon:'<i class="iconfont">&#xe623;</i> '
+                    });
+                    preNode.onclick=function (ev) {
+                        $('#result').html(new Date()+" 小雨12°C-16°C");
+                        preNode.close();
+                    }
+                }
+            }
+
+            $('#send').click(function () {
+                if(Notification.permission==='granted'){
+                    showNotifictioin();
+                }else{
+                    if(Notification.permission!='denied'){
+                        Notification.requestPermission(function (permission) {
+                            showNotifictioin();
+                        })
+                    }
+                }
+            })
+        }
+
+</script>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span6">
+            <button  id='send' class="btn btn-lg" type="button">发送</button>
+        </div>
+        <div class="span6">
+            <p id="result"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
